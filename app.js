@@ -25,7 +25,7 @@ app.use(session({secret:"qazwsxedcrfvtgbyhnujm",resave: true, saveUninitialized:
 var port = process.env.PORT || 8080;
 
 app.get('/', function (req, res) {
-  res.send('Hydrophonic Controller!')
+  res.send('Hydrophonic Controller Started!')
 })
 var server=app.listen(port,function(req,res){
 
