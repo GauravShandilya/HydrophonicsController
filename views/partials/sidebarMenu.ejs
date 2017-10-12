@@ -1,0 +1,39 @@
+<div id="sidebar-wrapper">
+       <ul class="sidebar-nav">
+            <br/>
+            <li class="sidebar-brand">
+                <a class="brandFont" align="center" href="/">
+                  Hydrophonic Controller !!!
+                </a>
+            </li>
+            <br/>
+            <br></br>
+
+            <div align="center">
+            <img class="img-circle" src="/images/logo.png"/>
+            </div>
+            <br/>
+            <br></br>
+            <li>
+             <a class="menus" align="center" href="/configure">Configure</a>
+            </li>
+            <li>
+             <a class="menus" align="center" href="/analyze">Analyze</a>
+            </li>
+            <li>
+             <a class="menus" align="center" href="/script">Script</a>
+            </li>
+
+            <br/><br/><br/>
+            <% if( typeof(session.loggedIn) == 'undefined' ) {%>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <a type="button" href="/login" class="btn btn-primary btn-lg outline">Login</a>&nbsp;&nbsp;&nbsp;
+             <a type="button" href="/register" class="btn btn-danger btn-lg outline">Sign Up</a>
+            </div>
+            <%} else{%>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <a type="button" align="center" href="/logout" class="btn btn-danger btn-lg outline">Logout</a>&nbsp;&nbsp;&nbsp;
+            </div>
+            <%}%>
+    </ul>
+</div>
