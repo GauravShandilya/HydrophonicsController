@@ -1,0 +1,17 @@
+{
+  "name": "hydrophoniccontroller",
+  "version": "1.0.0",
+  "description": "\"Hydrophonic Controller for Self Sustained System\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.12.1"
+  }
+}
