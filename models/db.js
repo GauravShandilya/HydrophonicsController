@@ -4,8 +4,8 @@ var bcrypt=require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 //var dbURI = 'mongodb://<HydrophonicGroup>:<Abcd@@123>@ds117625.mongoLab.com:17625/hydrophonic-controller-db';
-var dbURI = 'mongodb://gauravshandilya:Abcd@@123@ds117625.mlab.com:17625/hydrophonic-controller-db';
-//  var dbURI = 'mongodb://127.0.0.1/hydrophonicControllerdb'
+//var dbURI = 'mongodb://gauravshandilya:Abcd@@123@ds117625.mlab.com:17625/hydrophonic-controller-db';
+var dbURI = 'mongodb://127.0.0.1/hydrophonicControllerdb'
 //mongoose.Promise = global.Promise;
 //mongoose.connect(dbURI.toString());
 

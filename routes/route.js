@@ -18,4 +18,14 @@ exports.cyclicActuatorInput=function(req,res){
         console.log(req.query.wpDuration);
           console.log(req.query.apRunningTime);
             console.log(req.query.apDuration);
+         var data = req.body;
+         console.log("Inside Cyclic Actuator Input "+JSON.stringify(data));
+}
+
+exports.ConfigureInput = function(req,res){
+      console.log(req.query.deviceId);
+      console.log(req.query.deviceName);
+      var data = req.body;
+      console.log("Inside Configure Input"+JSON.stringify(data));
+
 }
