@@ -44,7 +44,6 @@ function setupCollection(err,db) {
       if(err) { console.log("Insert fail",err); } // Improve error handling
     }
   )
-   //console.log("Recieved SensorInfo------"+str);
    if(!str.includes("node.js") && topic=='SensorInfo')
    {
         //console.log("Recieved InitConfig-------------"+str);
