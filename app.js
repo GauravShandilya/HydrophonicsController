@@ -9,6 +9,7 @@ var script=require('./routes/script.js');
 var bodyParser=require('body-parser');
 //var user=require('./routes/user.js');
 var mqttClient = require('./nodemqtt.js');
+var mqttClient = require('./mqttController.js');
 var session=require('express-session');
 var app=express();
 
@@ -98,5 +99,3 @@ server.listen(port,function(req,res){
 console.log(chalk.green("Catch the action at http://localhost:"+port));
 });
 //io.initialize(server);
-
-

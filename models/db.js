@@ -84,3 +84,17 @@ var storiesSchema = new mongoose.Schema({
 // Build the User model
 
 mongoose.model( 'Story', storiesSchema,'stories');
+
+// Build the sensorData model
+
+var sensorData = new mongoose.Schema({
+  GatewayMAC:String,
+  NodeMAC:String,
+  EventType:String,
+  SensorName:String,
+  Value:String,
+  Battery:String,
+  Created_at:{type:Date,default:Date.now},
+});
+
+mongoose.model( 'Story', storiesSchema,'stories');
