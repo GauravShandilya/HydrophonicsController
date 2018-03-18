@@ -4,6 +4,8 @@ url = require('url');
 
 var db = require('./db/mongoose');
 var sensorINFO = require('./models/sensorDATAModel');//Load model in to memory
+var userINFO = require('./models/usersDATAModel');
+
 
 var mqtt_url = url.parse(process.env.CLOUDMQTT_URL || 'mqtt://ec2-34-212-20-3.us-west-2.compute.amazonaws.com:1883');
 var auth = (mqtt_url.auth || ':').split(':');
@@ -20,6 +22,7 @@ var options = {
 var client = mqtt.connect(url,options); // need to check options.
 
 db.model('sensorINFO'); // use model
+db.model('userDetails');
 
 /**
  * Node server will always subscribe these topics
@@ -48,34 +51,31 @@ client.on('message', (topic, message) => {
 })
 
 function handleSensorDATA (message) {
-var sensorDATAstr = JSON.parse(message);
-var sensorDATARecord = new sensorINFO({
-    _id: new db.Types.ObjectId(),
-    GatewayMAC : sensorDATAstr.GatewayMAC,
-    NodeMAC : sensorDATAstr.NodeMAC,
-    EventType : sensorDATAstr.EventType,
-    SensorName : sensorDATAstr.Sensor,
-    Value : sensorDATAstr.Value,
-    Battery:sensorDATAstr.Battery
-});
-sensorDATARecord.save(function(err) {
-    if (err) throw err;})
+    var debug=false;
+    var sensorDATAstr = JSON.parse(message);
+    var sensorDATARecord = new sensorINFO({
+        _id: new db.Types.ObjectId(),
+        GatewayMAC : sensorDATAstr.GatewayMAC,
+        NodeMAC : sensorDATAstr.NodeMAC,
+        EventType : sensorDATAstr.EventType,
+        SensorName : sensorDATAstr.Sensor,
+        Value : sensorDATAstr.Value,
+        Battery:sensorDATAstr.Battery
+    });
+    sensorDATARecord.save(function(err) { if (err) throw err;})
 
-console.log(sensorDATAstr.GatewayMAC);
-console.log(sensorDATAstr.NodeMAC);
-console.log(sensorDATAstr.Battery);
-//sensorDATAstr.CreatedAt = new Date();
-
-//collection.insert(sensorDATAstr, function(err,docs) {
-//      if(err) { console.log("Insert fail",err); } // Improve error handling
-//    })
-
-  // Handle MQTT payload
-  // findID (nodeMac or gatwayMac) --> UUID
-  // Insert to mongodb >> sensorData collection
-  // client.publish('UUID', payload)
-   console.log(sensorDATAstr);
-   client.publish(sensorDATAstr.GatewayMAC,message);
+    userINFO.find({'GatewayMAC':sensorDATAstr.GatewayMAC},{'UserId':1, '_id':0},function(err,user){
+    if(!user){
+            console.log("user not found")
+    }
+    if(debug) {
+        console.log(JSON.stringify(user).substring(12,48))
+        console.log(sensorDATAstr.GatewayMAC);
+        console.log(sensorDATAstr.NodeMAC);
+        console.log(sensorDATAstr.Battery);
+    }
+    client.publish(JSON.stringify(user).substring(12,48),message);
+    });
 }
 
 function handleAlertDATA (message) {

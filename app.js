@@ -12,6 +12,7 @@ var routes=require('./routes/route.js');
 var configure=require('./routes/configure.js');
 var analyze=require('./routes/analyze.js');
 var script=require('./routes/script.js');
+var users=require('./routes/users.js');
 var bodyParser=require('body-parser');
 //var user=require('./routes/user.js');
 //var mqttClient = require('./nodemqtt.js'); //Amit commented
@@ -115,6 +116,10 @@ var port = process.env.PORT || 3001;
 app.get('/',routes.index);
 app.get('/login',routes.login);
 app.get('/register',routes.register);
+app.get('/users',users.getUser);
+app.post('/createUser',users.createUser)
+//app.get('/register',routes.register);
+
 //app.post('/newUser',user.doCreate);
 //app.post('/authenticate',user.login);
 /*
