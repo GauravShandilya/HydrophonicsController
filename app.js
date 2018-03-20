@@ -13,6 +13,7 @@ var configure=require('./routes/configure.js');
 var analyze=require('./routes/analyze.js');
 var script=require('./routes/script.js');
 var users=require('./routes/users.js');
+var nodes=require('./routes/sensor.js')
 var bodyParser=require('body-parser');
 //var user=require('./routes/user.js');
 //var mqttClient = require('./nodemqtt.js'); //Amit commented
@@ -116,8 +117,11 @@ var port = process.env.PORT || 3001;
 app.get('/',routes.index);
 app.get('/login',routes.login);
 app.get('/register',routes.register);
-app.get('/users',users.getUser);
-app.post('/createUser',users.createUser)
+// ----------------------------------------------- Peeyush Added below routes --------
+app.get('/users',users.getAllUser);
+app.get('/users/:id',users.getUser)
+app.get('/graph/:id',nodes.getGraphPoints)
+// ------------------------------------------------------------------------------------
 //app.get('/register',routes.register);
 
 //app.post('/newUser',user.doCreate);
